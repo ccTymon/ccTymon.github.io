@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karteria Capital | Home</title>
+    
+    <!-- Google Fonts: Playfair Display for elegant headings, Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        karteria: {
+                            dark: '#0B1120',    // Deep navy/black
+                            blue: '#1E3A8A',    // Trust blue
+                            accent: '#D4AF37',  // Gold accent
+                            gray: '#94A3B8',    // Slate gray for secondary text
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-karteria-dark text-white font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 bg-karteria-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-serif text-2xl font-bold tracking-wide text-white hover:text-karteria-accent transition duration-300">
+                        KARTERIA <span class="font-light text-karteria-gray text-lg">CAPITAL</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-white border-b-2 border-[#A3EAD8] px-1 py-2 text-sm font-medium transition duration-300">Home</a>
+                    <a href="fund.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">The Fund</a>
+                    <a href="team.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">Team</a>
+                    <a href="insights.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">Insights</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-karteria-dark border-b border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="bg-white/5 block px-3 py-2 rounded-md text-base font-medium text-white">Home</a>
+                <a href="fund.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">The Fund</a>
+                <a href="team.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">Team</a>
+                <a href="insights.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">Insights</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex flex-col justify-end overflow-hidden pb-16 pt-32">
+            
+            <!-- Diagonal Split Backgrounds (MATHEMATICALLY EXACT SPLIT) -->
+            <div class="absolute inset-0 z-0 bg-[#0B1120]">
+                <!-- BOTTOM RIGHT TRIANGLE: Hong Kong at Night -->
+                <!-- Dimmed slightly using brightness-[0.70] for that moody vibe -->
+                <div class="absolute inset-0 bg-cover bg-center brightness-[0.70]" style="background-image: url('https://images.pexels.com/photos/14104051/pexels-photo-14104051.jpeg?auto=compress&cs=tinysrgb&w=2560'); clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
+                
+                <!-- TOP LEFT TRIANGLE: Toronto at Night -->
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507992781348-310259076fe0?auto=format&fit=crop&w=2500&q=80'); clip-path: polygon(0 0, 100% 0, 0 100%);"></div>
+            </div>
+
+            <!-- Left-side dark gradient to make text readable (Strictly restricted to the left side so HK image is clear) -->
+            <div class="absolute inset-y-0 left-0 w-full md:w-[60%] z-10 bg-gradient-to-r from-[#0B1120] via-[#0B1120]/90 to-transparent pointer-events-none"></div>
+
+            <!-- Hero Content Anchored Bottom Left -->
+            <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+                
+                <h1 class="font-serif text-5xl md:text-7xl font-bold tracking-tight mb-6 relative z-10">
+                    Precision.<br /> Performance.<br /> 
+                    <!-- Matching the discipline color to the mint-blue gradient -->
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#A3EAD8] to-[#7FBAF5]">Discipline.</span>
+                </h1>
+                
+                <!-- Updated Strategy Text -->
+                <div class="mt-4 flex max-w-2xl relative z-10">
+                    <!-- Matching vertical line color -->
+                    <div class="w-1 bg-gradient-to-b from-[#A3EAD8] to-[#7FBAF5] rounded-full shrink-0"></div>
+                    <p class="text-lg md:text-xl text-gray-200 font-light leading-relaxed drop-shadow-md pl-4">
+                        We operate on a conversation-focused, dual-execution model prioritizing controllable and transparent risk management. This dynamic structure empowers each General Partner to utilize their own unique methodologies to explore the market and capture opportunities.
+                    </p>
+                </div>
+                
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-start relative z-10">
+                    <!-- Matching button color -->
+                    <a href="fund.html" class="px-8 py-3 border border-transparent text-base font-medium rounded-sm text-karteria-dark bg-gradient-to-r from-[#A3EAD8] to-[#7FBAF5] hover:brightness-110 transition duration-300 md:text-lg shadow-lg shadow-[#A3EAD8]/20 text-center">
+                        View The Fund
+                    </a>
+                    <a href="#about" class="px-8 py-3 border border-white/30 text-base font-medium rounded-sm text-white hover:bg-white/10 backdrop-blur-sm transition duration-300 md:text-lg text-center">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. ABOUT US SECTION -->
+        <section id="about" class="py-24 bg-[#0B1120] relative border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-8">About <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#A3EAD8] to-[#7FBAF5]">Us</span></h2>
+                    
+                    <div class="space-y-6 text-gray-300 font-light text-lg leading-relaxed">
+                        <p>
+                            We are fundamentally changing the dynamic between capital allocators and fund managers. Karteria Capital was built to dismantle the rigid silos of traditional hedge funds by establishing a distributed conviction framework backed by radical transparency.
+                        </p>
+                        <p>
+                            Karteria utilizes a centralized capital pool that is divided evenly among our three General Partners (GPs). Instead of enforcing a single, inflexible mandate across the board, we empower our managers to be purely opportunistic in their areas of deep expertise.
+                        </p>
+                        <p>
+                            Each GP deploys their specific allocation using specialized methodologies—ranging from systematic macro events to statistical arbitrage. This structure ensures internal diversification, allowing the fund to capture immense value across different setups while remaining tightly tethered by strict, overarching risk-management parameters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. HOW WE OPERATE SECTION -->
+        <section id="operate" class="py-24 bg-[#0d1428]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">How We <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#A3EAD8] to-[#7FBAF5]">Operate</span></h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-[#A3EAD8] to-[#7FBAF5] rounded-full mx-auto"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Box 1: Distributed Conviction -->
+                    <div class="bg-[#0B1120] border border-white/10 rounded-xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#A3EAD8]/30 transition duration-500">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[#A3EAD8]/5 rounded-bl-full transition duration-500 group-hover:bg-[#A3EAD8]/10"></div>
+                        
+                        <h3 class="font-serif text-2xl text-white mb-4 flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A3EAD8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            Distributed Conviction
+                        </h3>
+                        
+                        <div class="space-y-4 text-gray-300 font-light text-lg leading-relaxed relative z-10">
+                            <p>
+                                We utilize a centralized capital pool that is strictly divided among our three General Partners. Instead of enforcing a monolithic top-down mandate, we empower our managers to be purely opportunistic within their distinct areas of expertise.
+                            </p>
+                            <p>
+                                Each GP deploys their allocation using specialized methodologies—ranging from systematic macro to statistical volatility arbitrage. This structure ensures deep internal diversification and dynamic alpha generation, tethered safely by firm-wide risk parameters.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: LP Partnership -->
+                    <div class="bg-[#0B1120] border border-white/10 rounded-xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#7FBAF5]/30 transition duration-500">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[#7FBAF5]/5 rounded-bl-full transition duration-500 group-hover:bg-[#7FBAF5]/10"></div>
+                        
+                        <h3 class="font-serif text-2xl text-white mb-4 flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#7FBAF5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            Interactive LP Partnership
+                        </h3>
+                        
+                        <div class="space-y-4 text-gray-300 font-light text-lg leading-relaxed relative z-10">
+                            <p>
+                                We vehemently reject the concept of the passive investor. At Karteria, Limited Partners are not just a source of capital; they are invited directly into the war room with an open line to our management team.
+                            </p>
+                            <p>
+                                LPs are actively encouraged to attend strategy meetings and present their own investment theses to the board. The strongest, most researched ideas are sourced directly into our central stock pool for our GPs to evaluate, model, and potentially deploy capital into.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Brand & Contact -->
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Karteria Capital</h3>
+                    <ul class="space-y-2 text-sm text-karteria-gray">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            investors@karteriacapital.com
+                        </li>
+                        <li class="flex items-start mt-2">
+                            <svg class="w-4 h-4 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>123 Financial District,<br>Suite 400<br>New York, NY 10005</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Directory</h3>
+                    <ul class="space-y-2 text-sm text-karteria-gray">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="fund.html" class="hover:text-white transition">The Fund</a></li>
+                        <li><a href="team.html" class="hover:text-white transition">Team</a></li>
+                        <li><a href="insights.html" class="hover:text-white transition">Insights</a></li>
+                    </ul>
+                </div>
+
+                <!-- Disclaimer Snippet -->
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Notice</h3>
+                    <p class="text-xs text-karteria-gray leading-relaxed">
+                        Access to the Fund is limited to qualified purchasers and accredited investors. This site is intended for informational purposes only.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Heavy Legal Disclaimer Block -->
+            <div class="border-t border-white/10 pt-8">
+                <p class="text-[10px] text-gray-500 text-justify leading-relaxed mb-4">
+                    <strong>LEGAL DISCLAIMER:</strong> This website and the information contained herein is for informational purposes only and does not constitute a complete description of our investment services or performance. This website is in no way a solicitation or offer to sell securities or investment advisory services except, where applicable, in states where we are registered or where an exemption or exclusion from such registration exists. Information throughout this site, whether stock quotes, charts, articles, or any other statement or statements regarding market or other financial information, is obtained from sources which we, and our suppliers believe reliable, but we do not warrant or guarantee the timeliness or accuracy of this information. 
+                </p>
+                <p class="text-[10px] text-gray-500 text-justify leading-relaxed mb-8">
+                    <strong>PAST PERFORMANCE IS NOT INDICATIVE OF FUTURE RESULTS.</strong> All investments involve risk, including the potential for loss of principal. Karteria Capital's models and strategies may not achieve their objectives. The graphs, charts, and formulas presented on this site cannot, in and of themselves, be used to determine which securities to buy or sell, or when to buy or sell securities.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                    <p>&copy; 2026 Karteria Capital Management LLC. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactivity Scripts -->
+    <script>
+        // Simple script to toggle the mobile menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            
+            // Switch hamburger to "X" icon
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+    </script>
+</body>
+</html>
