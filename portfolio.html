@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karteria Capital | The Fund</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for Performance Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        karteria: {
+                            dark: '#0B1120',
+                            blue: '#1E3A8A',
+                            accent: '#D4AF37',
+                            gray: '#94A3B8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-karteria-dark text-white font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 bg-karteria-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-serif text-2xl font-bold tracking-wide text-white hover:text-karteria-accent transition duration-300">
+                        KARTERIA <span class="font-light text-karteria-gray text-lg">CAPITAL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">Home</a>
+                    <a href="fund.html" class="text-white border-b-2 border-[#A3EAD8] px-1 py-2 text-sm font-medium transition duration-300">The Fund</a>
+                    <a href="team.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">Team</a>
+                    <a href="insights.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-500 px-1 py-2 text-sm font-medium transition duration-300">Insights</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-karteria-dark border-b border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">Home</a>
+                <a href="fund.html" class="bg-white/5 block px-3 py-2 rounded-md text-base font-medium text-white">The Fund</a>
+                <a href="team.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">Team</a>
+                <a href="insights.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition duration-300">Insights</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Page Header & Strategy Overview -->
+            <div class="max-w-3xl mb-16">
+                <h1 class="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-6">Fund Performance</h1>
+                
+                <div class="flex relative">
+                    <div class="w-1 bg-gradient-to-b from-[#A3EAD8] to-[#7FBAF5] rounded-full shrink-0 mr-5"></div>
+                    <p class="text-lg text-gray-300 font-light leading-relaxed">
+                        The Karteria Master Fund leverages a systematic, quantitative approach to absolute return generation. 
+                        By deploying our dual-execution model across diversified market environments, we isolate alpha while maintaining 
+                        strict, quantifiable risk management parameters. Our focus is delivering consistent, uncorrelated returns independent 
+                        of broader macroeconomic sentiment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden mb-12">
+                <!-- Subtle background glow -->
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#A3EAD8]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 relative z-10">
+                    <div>
+                        <h2 class="text-sm font-medium text-karteria-gray uppercase tracking-widest mb-1">Cumulative Total Return</h2>
+                        <div class="text-4xl font-serif font-bold text-white flex items-baseline gap-2">
+                            <span id="current-return">--.--%</span>
+                            <span class="text-sm font-sans font-medium text-[#A3EAD8]" id="return-label">Max</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeframe Controls -->
+                    <div class="flex bg-black/40 rounded-lg p-1 border border-white/10 mt-4 md:mt-0">
+                        <button onclick="updateChartTimeframe('1m')" id="btn-1m" class="chart-btn px-4 py-1.5 text-sm font-medium text-gray-400 rounded-md hover:text-white transition">1M</button>
+                        <button onclick="updateChartTimeframe('3m')" id="btn-3m" class="chart-btn px-4 py-1.5 text-sm font-medium text-gray-400 rounded-md hover:text-white transition">3M</button>
+                        <button onclick="updateChartTimeframe('ytd')" id="btn-ytd" class="chart-btn px-4 py-1.5 text-sm font-medium text-gray-400 rounded-md hover:text-white transition">YTD</button>
+                        <button onclick="updateChartTimeframe('max')" id="btn-max" class="chart-btn px-4 py-1.5 text-sm font-medium text-white bg-white/10 shadow-sm rounded-md transition">MAX</button>
+                    </div>
+                </div>
+
+                <!-- Canvas for Chart.js -->
+                <div class="relative h-[400px] w-full z-10">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- AUM Bar Chart Section -->
+            <div class="bg-[#0f172a] border border-white/10 rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#1E3A8A]/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 relative z-10">
+                    <div>
+                        <h2 class="text-sm font-medium text-karteria-gray uppercase tracking-widest mb-1">Assets Under Management</h2>
+                        <div class="text-4xl font-serif font-bold text-white flex items-baseline gap-2">
+                            <span id="current-aum">$24.5M</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas for AUM Chart -->
+                <div class="relative h-[300px] w-full z-10">
+                    <canvas id="aumChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Invest With Us Section -->
+            <div class="mt-24">
+                <div class="mb-12 border-b border-white/10 pb-8">
+                    <h2 class="font-serif text-3xl font-bold mb-4">Capital Partnership</h2>
+                    <p class="text-karteria-gray max-w-3xl text-lg leading-relaxed">
+                        We view our investors as strategic partners in our quantitative vision. Rather than acting as a traditional asset gatherer, Karteria actively curates a network of forward-thinking individuals and institutions aligned with our systematic approach to absolute returns.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-12 max-w-5xl">
+                    <!-- Left Column: Narrative -->
+                    <div class="md:col-span-7 space-y-6">
+                        <p class="text-gray-300 font-light leading-relaxed">
+                            Our onboarding process is designed to ensure mutual alignment. By opening our infrastructure to select partners, we expand our capital base while providing you direct exposure to institutional-grade systematic execution, typically reserved for large-scale funds.
+                        </p>
+                        <p class="text-gray-300 font-light leading-relaxed">
+                            We currently operate two primary partnership vehicles, structured to accommodate both emerging talent and established private capital. Each tier provides complete transparency, robust risk reporting, and direct alignment with our General Partners.
+                        </p>
+                        <div class="pt-6">
+                            <a href="mailto:investors@karteriacapital.com?subject=Partnership%20Inquiry" class="inline-flex items-center px-6 py-3 border border-white/20 text-sm font-medium rounded text-white bg-white/5 hover:bg-white/10 transition duration-300">
+                                Initiate Dialogue
+                                <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Tiers Layout -->
+                    <div class="md:col-span-5 space-y-10">
+                        <!-- Standard Tier -->
+                        <div class="relative pl-6 border-l border-[#7FBAF5]/30 hover:border-[#7FBAF5] transition duration-300">
+                            <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-[#7FBAF5]"></div>
+                            <h3 class="text-xl font-serif font-bold text-white mb-2">Private Clients</h3>
+                            <p class="text-sm text-karteria-gray mb-4 leading-relaxed">Tailored for accredited investors, family offices, and professionals seeking uncorrelated alpha generation and full capital deployment.</p>
+                            <div class="text-[#7FBAF5] font-medium tracking-wide">Minimum Entry: $5,000</div>
+                        </div>
+
+                        <!-- Student Tier -->
+                        <div class="relative pl-6 border-l border-[#A3EAD8]/30 hover:border-[#A3EAD8] transition duration-300">
+                            <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-[#A3EAD8]"></div>
+                            <h3 class="text-xl font-serif font-bold text-white mb-2">Student Scholars Initiative</h3>
+                            <p class="text-sm text-karteria-gray mb-4 leading-relaxed">A dedicated allocation fostering the next generation of financial minds, granting students early institutional access. Verified ID required.</p>
+                            <div class="text-[#A3EAD8] font-medium tracking-wide">Minimum Entry: $1,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Karteria Capital</h3>
+                    <ul class="space-y-2 text-sm text-karteria-gray">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            investors@karteriacapital.com
+                        </li>
+                        <li class="flex items-start mt-2">
+                            <svg class="w-4 h-4 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            <span>123 Financial District,<br>Suite 400<br>New York, NY 10005</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Directory</h3>
+                    <ul class="space-y-2 text-sm text-karteria-gray">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="fund.html" class="hover:text-white transition">The Fund</a></li>
+                        <li><a href="team.html" class="hover:text-white transition">Team</a></li>
+                        <li><a href="insights.html" class="hover:text-white transition">Insights</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl font-bold mb-4">Notice</h3>
+                    <p class="text-xs text-karteria-gray leading-relaxed">
+                        Access to the Fund is subject to minimum investment criteria. This site is intended for informational purposes only.
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8">
+                <p class="text-[10px] text-gray-500 text-justify leading-relaxed mb-4">
+                    <strong>LEGAL DISCLAIMER:</strong> This website and the information contained herein is for informational purposes only and does not constitute a complete description of our investment services or performance. Past performance is not indicative of future results.
+                </p>
+                <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                    <p>&copy; 2026 Karteria Capital Management LLC. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+
+        // 2. Chart.js Implementation
+        // ==========================================
+        // HOW TO UPDATE YOUR DATA
+        // ==========================================
+        // Simply add new items to the END of these two arrays every week.
+        // Ensure every date has a corresponding percentage return.
+        
+        const rawDates = [
+            '2025-06-02', '2025-06-09', '2025-06-16', '2025-06-23', '2025-06-30',
+            '2025-07-07', '2025-07-14', '2025-07-21', '2025-07-28',
+            '2025-08-04', '2025-08-11', '2025-08-18', '2025-08-25',
+            '2025-09-01', '2025-09-08', '2025-09-15', '2025-09-22', '2025-09-29',
+            '2025-10-06', '2025-10-13', '2025-10-20', '2025-10-27',
+            '2025-11-03', '2025-11-10', '2025-11-17', '2025-11-24',
+            '2025-12-01', '2025-12-08', '2025-12-15', '2025-12-22', '2025-12-29',
+            '2026-01-05', '2026-01-12', '2026-01-19', '2026-01-26', // Jan (YTD start)
+            '2026-02-02', '2026-02-09', '2026-02-16', '2026-02-23',
+            '2026-03-02', '2026-03-09', '2026-03-16', '2026-03-23', '2026-03-30',
+            '2026-04-06', '2026-04-13', '2026-04-20', '2026-04-27',
+            '2026-05-04', '2026-05-11', '2026-05-18', '2026-05-25'
+        ];
+
+        // Cumulative Total Return (%) matching the dates above
+        const rawReturns = [
+            0.0, 0.4, 0.9, 0.8, 1.2, 
+            1.5, 2.1, 1.8, 2.4, 
+            2.9, 3.1, 2.8, 3.5, 
+            4.0, 4.2, 3.9, 4.6, 5.1,
+            5.8, 5.6, 6.2, 6.9,
+            7.1, 6.8, 7.5, 8.2,
+            8.6, 9.1, 9.0, 9.5, 10.2,
+            10.5, 10.9, 10.6, 11.2, // Jan 2026
+            11.8, 12.1, 11.9, 12.5,
+            13.1, 13.5, 13.2, 14.0, 14.3,
+            14.9, 15.2, 15.0, 15.8,
+            16.2, 16.7, 16.5, 17.2 // Most recent
+        ];
+
+        let performanceChart;
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+
+        // Setup Gradient for the chart line fill
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(163, 234, 216, 0.4)'); // #A3EAD8 at top
+        gradient.addColorStop(1, 'rgba(163, 234, 216, 0.0)'); // Transparent at bottom
+
+        function initChart(dates, dataReturns) {
+            if(performanceChart) {
+                performanceChart.destroy();
+            }
+
+            performanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Total Return (%)',
+                        data: dataReturns,
+                        borderColor: '#A3EAD8',
+                        backgroundColor: gradient,
+                        borderWidth: 2,
+                        pointBackgroundColor: '#0B1120',
+                        pointBorderColor: '#7FBAF5',
+                        pointBorderWidth: 0,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        fill: true,
+                        tension: 0.3 // Smooth curves
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(11, 17, 32, 0.9)',
+                            titleColor: '#A3EAD8',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Return: ' + context.parsed.y.toFixed(2) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
+                            ticks: { color: '#94A3B8', maxTicksLimit: 8 }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
+                            ticks: {
+                                color: '#94A3B8',
+                                callback: function(value) { return value + '%'; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Update the large number at the top
+            const lastReturn = dataReturns[dataReturns.length - 1];
+            document.getElementById('current-return').innerText = `+${lastReturn.toFixed(2)}%`;
+        }
+
+        // Logic for timeframe toggling
+        function updateChartTimeframe(range) {
+            // UI Button styling
+            document.querySelectorAll('.chart-btn').forEach(btn => {
+                btn.classList.remove('bg-white/10', 'text-white', 'shadow-sm');
+                btn.classList.add('text-gray-400');
+            });
+            const activeBtn = document.getElementById(`btn-${range}`);
+            activeBtn.classList.remove('text-gray-400');
+            activeBtn.classList.add('bg-white/10', 'text-white', 'shadow-sm');
+            document.getElementById('return-label').innerText = range.toUpperCase();
+
+            // Data filtering
+            let sliceIndex = 0;
+            const totalPoints = rawDates.length;
+
+            if (range === '1m') {
+                sliceIndex = Math.max(0, totalPoints - 4); // roughly 4 weeks
+            } else if (range === '3m') {
+                sliceIndex = Math.max(0, totalPoints - 13); // roughly 13 weeks
+            } else if (range === 'ytd') {
+                // Find first date of current year (e.g., '2026')
+                const currentYear = new Date().getFullYear().toString();
+                sliceIndex = rawDates.findIndex(date => date.startsWith(currentYear));
+                if(sliceIndex === -1) sliceIndex = 0; // fallback if no YTD data
+            } else {
+                sliceIndex = 0; // MAX
+            }
+
+            const filteredDates = rawDates.slice(sliceIndex);
+            
+            // Adjust returns relative to the start of the timeframe so it starts near 0
+            // OR keep absolute cumulative return. Standard practice is showing the relative change for that period.
+            // Here we show absolute cumulative to match the "Max" curve, just zooming in.
+            const filteredReturns = rawReturns.slice(sliceIndex);
+            
+            initChart(filteredDates, filteredReturns);
+        }
+
+        // Initialize on load with 'MAX'
+        initChart(rawDates, rawReturns);
+
+        // ==========================================
+        // AUM Bar Chart Implementation
+        // ==========================================
+        const aumQuarters = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026'];
+        const aumValues = [2.5, 5.1, 8.4, 14.2, 19.8, 24.5]; // Enter AUM in Millions here
+
+        const aumCtx = document.getElementById('aumChart').getContext('2d');
+        
+        // Gradient for bars
+        const barGradient = aumCtx.createLinearGradient(0, 0, 0, 300);
+        barGradient.addColorStop(0, 'rgba(127, 186, 245, 0.8)'); // #7FBAF5 top
+        barGradient.addColorStop(1, 'rgba(30, 58, 138, 0.2)');   // #1E3A8A bottom
+
+        new Chart(aumCtx, {
+            type: 'bar',
+            data: {
+                labels: aumQuarters,
+                datasets: [{
+                    label: 'AUM ($ Millions)',
+                    data: aumValues,
+                    backgroundColor: barGradient,
+                    borderColor: '#7FBAF5',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    hoverBackgroundColor: 'rgba(163, 234, 216, 0.8)', // Turns mint on hover
+                    hoverBorderColor: '#A3EAD8'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(11, 17, 32, 0.9)',
+                        titleColor: '#7FBAF5',
+                        bodyColor: '#fff',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        padding: 12,
+                        callbacks: {
+                            label: function(context) {
+                                return 'AUM: $' + context.parsed.y + 'M';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { color: '#94A3B8' }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
+                        ticks: {
+                            color: '#94A3B8',
+                            callback: function(value) { return '$' + value + 'M'; }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
